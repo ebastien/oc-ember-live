@@ -42,3 +42,6 @@ Demo.Router.map(function() {
     this.resource("kpi", { path: ':kpi_id' });
   });
 });
+
+Demo.KpisController = Ember.ArrayController.extend();
+

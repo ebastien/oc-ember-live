@@ -1,0 +1,10 @@
+<p>Please select a KPI:</p>
+<ul>
+{{#each kpi in controller}}
+  <li>{{#linkTo "kpi" kpi}}{{ kpi.name }}{{/linkTo}}</li>
+{{/each}}
+</ul>
+
+<div>
+  {{ outlet }}
+</div>
