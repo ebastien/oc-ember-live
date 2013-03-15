@@ -9,3 +9,12 @@
 //= require_tree ./templates
 
 Demo = Ember.Application.create();
+
+Demo.Adapter = DS.RESTAdapter.extend({
+  namespace: 'api'
+});
+
+Demo.Store = DS.Store.extend({
+  revision: 11,
+  adapter: 'Demo.Adapter'
+});
