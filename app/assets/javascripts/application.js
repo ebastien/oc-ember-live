@@ -50,3 +50,41 @@ Demo.KpisRoute = Ember.Route.extend({
    return Demo.Kpi.find();
   }
 });
+
+Demo.KpiRoute = Ember.Route.extend({
+  setupController: function(controller, model) {
+    model.reload();
+  }
+});
+
+Demo.ChartView = Ember.View.extend({
+  didInsertElement: function () {
+    var elementId = this.get('elementId');
+    var chart = d3.select('#' + elementId)
+                  .append('svg:svg')
+                  .attr('id','chart')
+                  .attr('width', 500)
+                  .attr('height', 300);
+    this.set('chart', chart);
+    this.updateChart();
+  },
+
+  barChart:
+    nv.models.discreteBarChart()
+      .x(function(d) { return d.get('label') })
+      .y(function(d) { return d.get('value') })
+      .tooltips(false)
+      .showValues(true),
+
+  updateChart: function () {
+    var data = [{
+      key: this.get('data.name'),
+      values: this.get('data.values').toArray()
+    }];
+    var chart = this.get('chart');
+    chart.datum(data)
+         .transition()
+         .duration(500)
+         .call(this.barChart);
+  }.observes('data.values.@each.value')
+});
