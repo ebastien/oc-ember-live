@@ -18,3 +18,17 @@ Demo.Store = DS.Store.extend({
   revision: 11,
   adapter: 'Demo.Adapter'
 });
+
+Demo.Sample = DS.Model.extend({
+  label: DS.attr('string'),
+  value: DS.attr('number')
+});
+
+Demo.Kpi = DS.Model.extend({
+  name: DS.attr('string'),
+  values: DS.hasMany('Demo.Sample')
+});
+
+Demo.Adapter.map(Demo.Kpi, {
+  values: { embedded: 'always' }
+});
