@@ -32,3 +32,13 @@ Demo.Kpi = DS.Model.extend({
 Demo.Adapter.map(Demo.Kpi, {
   values: { embedded: 'always' }
 });
+
+Demo.Router.reopen({
+  location: 'history'
+});
+
+Demo.Router.map(function() {
+  this.resource("kpis", function() {
+    this.resource("kpi", { path: ':kpi_id' });
+  });
+});
