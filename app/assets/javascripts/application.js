@@ -6,5 +6,6 @@
 //= require d3
 //= require nv.d3
 //= require_self
+//= require_tree ./templates
 
 Demo = Ember.Application.create();
