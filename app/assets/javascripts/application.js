@@ -45,6 +45,12 @@ Demo.Router.map(function() {
 
 Demo.KpisController = Ember.ArrayController.extend();
 
+Demo.IndexRoute = Ember.Route.extend({
+  redirect: function() {
+    this.transitionTo('kpis');
+  }
+});
+
 Demo.KpisRoute = Ember.Route.extend({
   model: function() {
    return Demo.Kpi.find();
