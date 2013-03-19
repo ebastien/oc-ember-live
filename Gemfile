@@ -15,6 +15,8 @@ gem 'rack-cors'
 gem 'grape'
 gem 'grape-entity'
 
+gem 'omniauth', '~>1.1.3'
+
 gem 'ember-rails'
 
 group :assets do

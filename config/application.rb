@@ -59,7 +59,11 @@ module Demo
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
 
+    # Paths for Grape APIs
     config.paths.add "app/api", :glob => "**/*.rb"
     config.autoload_paths += Dir["#{Rails.root}/app/api/*"]
+
+    # Required for sessions
+    config.api_only = false
   end
 end
