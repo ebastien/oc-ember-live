@@ -1,4 +1,6 @@
 Demo::Application.routes.draw do
+  mount Demo::API => '/grape'
+
   scope "/api" do
     resources :kpis, :only => [:index, :show]
   end

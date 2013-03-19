@@ -14,6 +14,8 @@ gem 'tokyocabinet'
 
 gem 'rack-cors'
 
+gem 'grape'
+
 gem 'ember-rails'
 
 group :assets do
