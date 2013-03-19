@@ -1,5 +1,3 @@
-require 'tokyostore'
-
 class Kpi < TokyoStore::Model
   connect 'db/cube.tch'
 
