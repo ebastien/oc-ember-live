@@ -11,7 +11,7 @@
 Demo = Ember.Application.create();
 
 Demo.Adapter = DS.RESTAdapter.extend({
-  namespace: 'api'
+  namespace: 'api/v1'
 });
 
 Demo.Store = DS.Store.extend({

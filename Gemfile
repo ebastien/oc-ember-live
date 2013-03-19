@@ -6,8 +6,6 @@ gem 'rails-api'
 
 gem 'sqlite3'
 
-gem 'active_model_serializers', "~> 0.7.0"
-
 gem 'toystore'
 gem 'moneta'
 gem 'tokyocabinet'
@@ -15,6 +13,7 @@ gem 'tokyocabinet'
 gem 'rack-cors'
 
 gem 'grape'
+gem 'grape-entity'
 
 gem 'ember-rails'
 

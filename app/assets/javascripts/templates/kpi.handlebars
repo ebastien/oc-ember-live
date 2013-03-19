@@ -1,3 +1,7 @@
 <h3>{{ model.name }}</h3>
 
-{{ view Demo.ChartView dataBinding="model" }}
+{{#if model.values}}
+  {{ view Demo.ChartView dataBinding="model" }}
+{{else}}
+  <p>Loading...</p>
+{{/if}}
