@@ -1,14 +1,26 @@
 require 'tokyocabinet'
 
 module TokyoStore
-  module Connector
-    attr_reader :backend
 
+  class Registry
+    def self.register(db)
+      @dbs ||= []
+      @dbs << db
+    end
+
+    def self.clean!
+      @dbs.each { |db| db.close } if @dbs
+    end
+  end
+
+  module Connector
     def connect(file)
-      @backend = TokyoCabinet::HDB.new
-      @backend.open(file, TokyoCabinet::HDB::OWRITER | TokyoCabinet::HDB::OCREAT)
-      @store = Moneta.new(:TokyoCabinet, :backend => @backend, :serializer => :json)
-      adapter :memory, @store
+      db = TokyoCabinet::HDB.new
+      db.open(file, TokyoCabinet::HDB::OWRITER | TokyoCabinet::HDB::OCREAT)
+      TokyoStore::Registry.register db
+
+      store = Moneta.new(:TokyoCabinet, :backend => db, :serializer => :json)
+      adapter :memory, store
     end
   end
 
