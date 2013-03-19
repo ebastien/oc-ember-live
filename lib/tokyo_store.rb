@@ -10,6 +10,7 @@ module TokyoStore
 
     def self.clean!
       @dbs.each { |db| db.close } if @dbs
+      @dbs = []
     end
   end
 
