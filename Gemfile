@@ -17,6 +17,7 @@ gem 'tokyocabinet'
 gem 'rack-cors'
 
 gem 'ember-rails'
+gem 'ember-auth-rails'
 
 group :assets do
   gem 'sass-rails'
