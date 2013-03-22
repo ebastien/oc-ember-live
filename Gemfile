@@ -6,6 +6,8 @@ gem 'rails-api'
 
 gem 'sqlite3'
 
+gem 'devise'
+
 gem 'active_model_serializers', "~> 0.7.0"
 
 gem 'toystore'
