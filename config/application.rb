@@ -58,5 +58,8 @@ module Demo
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+    
+    # Required for session management
+    config.api_only = false
   end
 end
