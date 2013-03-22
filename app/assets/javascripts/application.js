@@ -115,37 +115,44 @@ Demo.KpiRoute = Auth.Route.extend({
   }
 });
 
+Demo.KpiController = Ember.Controller.extend({
+  chartParams: {showValues: true}
+});
+
 Demo.ChartView = Ember.View.extend({
   didInsertElement: function () {
     var elementId = this.get('elementId');
-    var chart = d3.select('#' + elementId)
-                  .append('svg:svg')
-                  .attr('id','chart')
-                  .attr('width', 500)
-                  .attr('height', 300);
-    this.set('chart', chart);
+    this.set('elementId', elementId);
     this.updateChart();
   },
 
-  barChart:
-    nv.models.discreteBarChart()
-      .x(function(d) { return d.get('label') })
-      .y(function(d) { return d.get('value') })
-      .tooltips(false)
-      .showValues(true),
-
   updateChart: function () {
-    var chartName = this.get('data.name');
-    var chartValues = this.get('data.values');
-    if (chartName && chartValues) {
-      var data = [{ key: chartName, values: chartValues.toArray() }];
-      var chart = this.get('chart');
-      chart.datum(data)
-           .transition()
-           .duration(500)
-           .call(this.barChart);
+    var chartName = this.get('data.name'),
+        chartValues = this.get('data.values');
+
+    if (chartName && chartValues.get('length')) {
+      var data = [{ key: chartName, values: chartValues.toArray() }],
+          elementId = this.get('elementId'),
+          showValues = this.get('params.showValues');
+
+      var barChart = nv.models.discreteBarChart()
+                       .x(function(d) { return d.get('label') })
+                       .y(function(d) { return d.get('value') })
+                       .tooltips(false)
+                       .showValues(showValues);
+
+      var element = d3.select('#' + elementId);
+
+      element.select('svg').remove();
+
+      element.append('svg:svg')
+             .attr('id','chart')
+             .attr('width', 500)
+             .attr('height', 300)
+             .datum(data)
+             .call(barChart);
     }
-  }.observes('data.values.@each.label',
-             'data.values.@each.value',
-             'data.name')
+  }.observes('data.values.length',
+             'data.name',
+             'params.showValues')
 });

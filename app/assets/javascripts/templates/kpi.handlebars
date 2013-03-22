@@ -1,3 +1,10 @@
 <h3>{{ model.name }}</h3>
 
-{{ view Demo.ChartView dataBinding="model" }}
+<form class="form-inline">
+  <label class="checkbox">
+    {{ view Ember.Checkbox checkedBinding="chartParams.showValues" }}
+    Show values
+  </label>
+</form>
+
+{{ view Demo.ChartView dataBinding="model" paramsBinding="chartParams" }}
