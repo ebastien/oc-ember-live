@@ -25,6 +25,12 @@ group :assets do
   gem 'bootstrap-sass'
 end
 
+group :development, :test do
+  gem 'rspec-rails'
+  gem 'fabrication'
+  gem 'jsonpath'
+end
+
 gem 'jquery-rails'
 
 gem 'thin'

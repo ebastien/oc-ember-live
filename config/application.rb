@@ -61,5 +61,11 @@ module Demo
     
     # Required for session management
     config.api_only = false
+
+    # Set preferences for generators
+    config.generators do |g|
+      g.test_framework      :rspec, fixture: true
+      g.fixture_replacement :fabrication
+    end
   end
 end
