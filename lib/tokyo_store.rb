@@ -15,9 +15,14 @@ module TokyoStore
   end
 
   module Connector
-    def connect(file)
+    def connect(path)
+
+      directory, filename = File.split path
+      env_filename = Rails.env.production? ? filename : "#{Rails.env}_#{filename}"
+      env_path = File.join directory, env_filename
+
       db = TokyoCabinet::HDB.new
-      db.open(file, TokyoCabinet::HDB::OWRITER | TokyoCabinet::HDB::OCREAT)
+      db.open(env_path, TokyoCabinet::HDB::OWRITER | TokyoCabinet::HDB::OCREAT)
       TokyoStore::Registry.register db
 
       store = Moneta.new(:TokyoCabinet, :backend => db, :serializer => :json)
