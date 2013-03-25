@@ -3,7 +3,6 @@ require "spec_helper"
 describe KpisController do
 
   let(:kpi) { Fabricate(:kpi) }
-  before { kpi } # initialize it
 
   describe "GET show" do
 
