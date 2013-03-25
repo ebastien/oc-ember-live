@@ -8,10 +8,10 @@ describe KpisController do
   describe "GET show" do
 
     before { get :show, id: kpi.id }
-    subject(:json) { JSON.parse response.body }
+    subject(:body) { response.body }
 
     it "returns our KPI" do
-      expect(json["kpi"]["name"]).to eq(kpi.name)
+      expect(first_match '$.kpi.name').to eq(kpi.name)
     end
   end
 end
