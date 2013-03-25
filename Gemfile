@@ -29,6 +29,10 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'fabrication'
   gem 'jsonpath'
+  gem 'listen'
+  gem 'rb-inotify', :require => false
+  gem 'rb-fsevent', :require => false
+  gem 'spring'
 end
 
 gem 'jquery-rails'
