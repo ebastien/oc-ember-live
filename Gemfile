@@ -33,6 +33,8 @@ group :development, :test do
   gem 'rb-inotify', :require => false
   gem 'rb-fsevent', :require => false
   gem 'spring'
+  gem 'guard'
+  gem 'guard-rspec'
 end
 
 gem 'jquery-rails'
