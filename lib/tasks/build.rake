@@ -20,17 +20,17 @@ app_description = config['description'] || 'A Rails application.'
 resources = [
   '.bundle/', '.bundle/config',
   'app/**/*',
-  'bin/**/*',
+  'bin/', 'bin/*',
   'db/', 'db/schema.rb',
-  'config/**/*',
+  'config/', 'config/**/*',
   'config.ru',
   'Gemfile',
   'Gemfile.lock',
-  'lib/**/*',
-  'public/**/*',
+  'lib/', 'lib/**/*',
+  'public/', 'public/**/*',
   'Rakefile',
   'vendor/bundle/**/*',
-  'vendor/cache/**/*'
+  'vendor/cache/', 'vendor/cache/*'
 ]
 
 lib_path = "/var/lib/rails"
