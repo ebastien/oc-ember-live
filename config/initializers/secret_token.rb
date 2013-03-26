@@ -1,1 +1,7 @@
-Demo::Application.config.secret_token = '66ede2e8502f9ed7c8e5c59519bda056a1780c6655d5347ccb0d7fcbe91a16e20f7d88062ae2c28ae1f05214516a8fb93029dff02b0e128dde4c35da217cd4b0'
+begin
+  token_file = Rails.root.join ".secret_token"
+  secret_token = open(token_file).read.strip
+  Demo::Application.config.secret_token = secret_token
+rescue LoadError, Errno::ENOENT => e
+  raise "Could not load secret token: #{e}"
+end
