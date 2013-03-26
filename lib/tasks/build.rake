@@ -28,6 +28,7 @@ resources = [
   'Gemfile.lock',
   'lib/', 'lib/**/*',
   'public/', 'public/**/*',
+  'script/', 'script/rails',
   'Rakefile',
   'vendor/bundle/**/*'
 ]
