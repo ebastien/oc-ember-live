@@ -1,16 +1,26 @@
 require 'pathname'
 
-app_name = "demo"
-app_version = "0.1.0"
-app_iteration= "1"
-app_arch = "all"
-app_description = "Demo application"
-
 app_path = File.expand_path('../../..', __FILE__)
-build_path = File.join app_path, 'tmp/build'
+
+config_file = File.join app_path, 'release.yml'
+
+config = begin
+  YAML.load_file config_file
+rescue
+  $stderr.puts "Warning: no release configuration found at #{config_file}."
+  {}
+end
+
+app_name = config['name'] || 'rails-app'
+app_version = config['version'] || '0.1.0'
+app_iteration= config['iteration'] || '1'
+app_arch = config['arch'] || 'all'
+app_description = config['description'] || 'A Rails application.'
 
 resources = [
+  '.bundle/', '.bundle/config',
   'app/**/*',
+  'bin/**/*',
   'db/', 'db/schema.rb',
   'config/**/*',
   'config.ru',
@@ -19,7 +29,8 @@ resources = [
   'lib/**/*',
   'public/**/*',
   'Rakefile',
-  'vendor/bundle/**/*'
+  'vendor/bundle/**/*',
+  'vendor/cache/**/*'
 ]
 
 lib_path = "/var/lib/rails"
@@ -32,17 +43,19 @@ app_etc_path = File.join etc_path, app_name
 
 directories = [app_lib_path, app_log_path, app_etc_path]
 
+build_path = File.join app_path, 'tmp/build'
+
 package_name = "#{app_name}_#{app_version}-#{app_iteration}_#{app_arch}.deb"
 package_path = File.join build_path, package_name
 
 namespace :build do  
 
-  desc "Prepare dependencies for deployment."
+  desc "Prepare dependencies for deployment of #{app_name}."
   task :dependencies do
     system("bundle install --local --binstubs --path vendor/bundle")
   end
   
-  desc "Build the distribution files."
+  desc "Build the distribution files of #{app_name}."
   task :distribution => ['build:dependencies', 'assets:precompile'] do
   
     directories.each do |d|
@@ -80,7 +93,7 @@ namespace :build do
     end
   end
   
-  desc "Package the application as a Debian package."
+  desc "Package the application as #{package_name}."
   task :package => 'build:distribution' do
     fpm_bin = File.join app_path, "bin/fpm"
     unless $?.success? && File.executable?(fpm_bin)
