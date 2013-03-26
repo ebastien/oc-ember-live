@@ -16,8 +16,11 @@ gem 'tokyocabinet'
 
 gem 'rack-cors'
 
+gem 'jquery-rails'
 gem 'ember-rails'
 gem 'ember-auth-rails'
+
+gem 'thin'
 
 group :assets do
   gem 'sass-rails'
@@ -38,6 +41,3 @@ group :development, :test do
   gem 'guard-rspec'
 end
 
-gem 'jquery-rails'
-
-gem 'thin'
