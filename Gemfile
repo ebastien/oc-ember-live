@@ -27,6 +27,7 @@ group :assets do
   gem 'compass-rails'
   gem 'bootstrap-sass'
   gem 'uglifier'
+  gem 'therubyracer'
 end
 
 group :development, :test do
