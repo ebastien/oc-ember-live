@@ -29,8 +29,7 @@ resources = [
   'lib/', 'lib/**/*',
   'public/', 'public/**/*',
   'Rakefile',
-  'vendor/bundle/**/*',
-  'vendor/cache/', 'vendor/cache/*'
+  'vendor/bundle/**/*'
 ]
 
 lib_path = "/var/lib/rails"
