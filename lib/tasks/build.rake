@@ -34,13 +34,15 @@ resources = [
 
 lib_path = "/var/lib/rails"
 log_path = "/var/log/rails"
+run_path = "/var/run/rails"
 etc_path = "/etc/rails"
 
 app_lib_path = File.join lib_path, app_name
 app_log_path = File.join log_path, app_name
+app_run_path = File.join run_path, app_name
 app_etc_path = File.join etc_path, app_name
 
-directories = [app_lib_path, app_log_path, app_etc_path]
+directories = [app_lib_path, app_log_path, app_run_path, app_etc_path]
 
 build_path = File.join app_path, 'tmp/build'
 
