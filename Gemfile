@@ -42,3 +42,6 @@ group :development, :test do
   gem 'guard-rspec'
 end
 
+group :deployment do
+  gem 'fpm', "~> 0.4.0"
+end
